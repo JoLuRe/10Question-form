@@ -1,5 +1,4 @@
 var formElement = null;
- 
 //al cargar la página... 
 window.onload = function(){ 
  //pide los datos, lee preguntas.xml del servidor (por http)
