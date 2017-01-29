@@ -1,0 +1,54 @@
+body {
+    margin: 0;
+/*    margin-right: 50%;  */
+    padding: 0;
+    background-color:darkblue;
+}
+.examen {
+    margin: 2% 3% 5% 3%;
+    font-family: calibri, sans-serif;
+    font-style: normal;
+    font-size: 16px;
+    background-color:white;     
+}
+.leyenda {
+    font-style: normal;
+    font-size: 28px;   
+    font-weight: bold;
+    text-align: right;
+    color: red;
+}
+.question {
+    margin-bottom:1%;
+    margin-right: 40%;
+    font-weight: bold;    
+    color:darkblue;
+}
+.question:hover{
+/*    font-weight: bold;
+    font-size: 18px;   */
+    background-color:darkblue;
+    color:white;
+    border-left: 3px solid orange;
+}
+.text, .mlist, .checkbox{
+/*    background-color:cyan;    */ 
+}
+.list, .radio{
+/*    background-color:lightcyan;    */ 
+}
+.impar {
+    background-color:lightgrey;    
+    border-left: 3px solid black;
+}
+.par {
+    background-color:whitesmoke;    
+    border-left: 3px solid darkgrey;
+}
+/*div.label {
+    float:left;
+    text-align: right;    
+}*/
+.solution {
+    display: none;
+}
