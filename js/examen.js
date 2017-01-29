@@ -8,7 +8,7 @@ window.onload = function(){
    gestionarXml(this);
   }
  };
- xhttp.open("GET", "../xml/examen.xml", true);
+ xhttp.open("GET", "xml/examen.xml", true);
  xhttp.send();
 //funcion donde cogemos los datos del xml y los ponemos en el html 
 function gestionarXml(dadesXml){
