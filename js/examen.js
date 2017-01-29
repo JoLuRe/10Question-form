@@ -1,4 +1,4 @@
-var formElement=null;
+var formElement = null;
 /*var secret=50; //ahora se lee 23 de <answer>23</answer> suministrado en preguntas.xml */
  
 //al cargar la pÃ¡gina... 
@@ -15,14 +15,17 @@ window.onload = function(){
  xhttp.send();
  
 /* //Para corregir gestionamos el contenido introducido en el formulario
- formElement=document.getElementById('myform');
+ formElement=document.getElementById('examinationform');
  formElement.onsubmit=function(){
-  var s=formElement.elements[0].value; 
-  if (s==secret) alert('NÃºmero correcto');
+  var s=formElement.elements[0].value;  
+  var s=lowercase(formElement.elements[0].value); 
+  if (s==clue) alert('Correcto');
   else {
-    if (s>secret) alert('te has pasado');
+    alert('No es correcto');
+/*    if (s>secret) alert('te has pasado');
     else alert('te has quedado corto');
-  }
+*/
+/*  }
   return false;
  }
 }
@@ -32,8 +35,8 @@ window.onload = function(){
 //funcion donde cogemos los datos del xml y los ponemos en el html 
 function gestionarXml(dadesXml){
  var xmlDoc = dadesXml.responseXML;
- document.getElementById("title").innerHTML = xmlDoc.getElementsByTagName("title")[0].childNodes[0].nodeValue;
- secret=parseInt(xmlDoc.getElementsByTagName("answer")[0].childNodes[0].nodeValue);
+ document.getElementById("q001").innerHTML = xmlDoc.getElementsByTagName("text")[0].childNodes[0].nodeValue;
+ clue=parseInt(xmlDoc.getElementsByTagName("answer")[0].childNodes[0].nodeValue);
 }
 
 
