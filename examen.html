@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html>
+   <head>
+      <title>Examen amb autocorrecció</title>
+      <meta charset="UTF-8">
+      <meta name="description" content="Examen d'exemple amb possibilitat d'autocorrecció">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <link rel='stylesheet' media='screen and (min-width: 961px)' href='css/examend.css'>
+      <link rel='stylesheet' media='screen and (max-width: 960px)' href='css/examenm.css'>
+      <script src="js/examen.js"></script>
+   </head>
+   <body>
+      
+
+       <!-- codi inici -->    
+<div class='examen'>
+
+
+    <form name="examinationform" method='get'>
+<!--    <form role="form" name="examinationform" action='quiztest.asp?qtest=HTML' method='post'>
+
+        <input type="hidden" name="starttime" value="1/26/2017 7:40:10 PM">
+        <input type="hidden" name="answers" value="0000000000" size="25">
+        <input type="hidden" name="qnumber" value="1" size="10">
+
+-->
+        <fieldset>
+            <legend class="leyenda">Test your knowledge</legend>
+    
+<!-- Question 1 TEXT -->
+        <p class='question impar'></p>
+        <div class='text'>
+<!--            <label>Your answer: <input type='text' name='choice' id='2' value='' /></label>  -->
+            <label>Your answer: <input type='text' name='text_1'/></label>
+            <br>
+            <span class="solution">Correct answer: </span>
+        </div>
+        <br/>
+<!-- Question 2 TEXT -->
+        <p class='question par'></p>
+        <div class='text'>
+            <label>Your answer: <input type='text' name='text_2'/></label>
+            <br>
+            <span class="solution">Correct answer: </span>
+        </div>
+        <br/>
+<!-- Question 3 SELECT -->
+        <p class='question impar'></p>
+        <div class='list'>
+            <label>Your answer: 
+                <select name="select_1"> 
+                <option value="1"></option>
+                <option value="2"></option>
+                <option value="3"></option>
+                <option value="4"></option>
+                </select>        
+            </label>    
+            <br>
+            <span class="solution">Correct answer: </span>
+        </div>
+        <br/>
+<!-- Question 4 SELECT -->
+        <p class='question par'></p>
+        <div class='list'>
+            <label>Your answer: 
+                <select name="select_2"> 
+                <option value="1"></option>
+                <option value="2"></option>
+                <option value="3"></option>
+                <option value="4"></option>
+                </select>        
+            </label>    
+            <br>
+            <span class="solution">Correct answer: </span>
+        </div>
+        <br/>
+<!-- Question 5 MULTIPLE -->
+        <p class='question impar'></p>
+        <div class='mlist'>
+            <label>Your answer: </label>
+            <select multiple name="multiple_1" size="8"> 
+                <option value="1"></option>
+                <option value="2"></option>
+                <option value="3"></option>
+                <option value="4"></option>
+                <option value="5"></option>
+                <option value="6"></option>
+                <option value="7"></option>
+                <option value="8"></option>
+            </select>        
+            <br>
+            <span class="solution">Correct answer: </span>
+        </div>
+        <br/>  
+<!-- Question 6 MULTIPLE -->
+        <p class='question par'></p>
+        <div class='mlist'>
+            <label>Your answer: </label>
+            <select multiple name="multiple_2" size="8"> 
+                <option value="1"></option>
+                <option value="2"></option>
+                <option value="3"></option>
+                <option value="4"></option>
+                <option value="5"></option>
+                <option value="6"></option>
+                <option value="7"></option>
+                <option value="8"></option>
+            </select>        
+            <br>
+            <span class="solution">Correct answer: </span>
+        </div>
+        <br/>  
+<!-- Question 7 RADIO -->
+        <p class='question impar'></p>
+        <div class='radio'>
+            <label><input type='radio' name='radio_1' id='1' value='1' /></label>
+         </div>
+         <div class='radio'>  
+            <label><input type='radio' name='radio_1' id='2' value='2' /></label>
+         </div>
+         <div class='radio'>  
+            <label><input type='radio' name='radio_1' id='3' value='3' /></label>
+         </div>
+         <div class='radio'>  
+            <label><input type='radio' name='radio_1' id='4' value='4' /></label>
+        </div>
+        <span class="solution">Correct answer: </span>
+<!-- Question 8 RADIO -->
+        <p class='question par'></p>
+        <div class='radio'>
+            <label><input type='radio' name='radio_2' id='1' value='1' /></label>
+        </div>
+        <div class='radio'>
+            <label><input type='radio' name='radio_2' id='2' value='2' /></label>
+        </div>
+        <div class='radio'>
+            <label><input type='radio' name='radio_2' id='3' value='3' /></label>
+        </div>
+        <div class='radio'>
+            <label><input type='radio' name='radio_2' id='4' value='4' /></label>
+        </div>
+        <span class="solution">Correct answer: </span>
+<!-- Question 9 CHECKBOX -->
+        <p class='question impar'></p>
+        <div class='checkbox'>
+            <label><input type='checkbox' name='checkbox_11' id='1' value='1' /></label>
+        </div>
+        <div class='checkbox'>
+            <label><input type='checkbox' name='checkbox_12' id='2' value='2' /></label>
+        </div>
+        <div class='checkbox'>
+            <label><input type='checkbox' name='checkbox_13' id='3' value='3' /></label>
+        </div>
+         <div class='checkbox'>
+            <label><input type='checkbox' name='checkbox_14' id='4' value='4' /></label>
+        </div>
+        <span class="solution">Correct answer: </span>
+<!-- Question 10 CHECKBOX -->
+        <p class='question par'></p>
+        <div class='checkbox'>
+            <label><input type='checkbox' name='checkbox_21' id='1' value='1' /></label>
+        </div>
+        <div class='checkbox'>
+            <label><input type='checkbox' name='checkbox_22' id='2' value='2' /></label>
+        </div>
+        <div class='checkbox'>
+            <label><input type='checkbox' name='checkbox_23' id='3' value='3' /></label>
+        </div>
+         <div class='checkbox'>
+            <label><input type='checkbox' name='checkbox_24' id='4' value='4' /></label>
+        </div>
+        <span class="solution">Correct answer: </span>
+
+        <br/>
+
+<!--
+TEXTAREA
+DATALIST
+-->
+        <br/>    
+        <input type='submit' class="w3-btn w3-orange w3-large w3-text-white" value=' Evaluate '>
+      </fieldset>
+    </form>
+
+</div>
+    </body>
+</html>
