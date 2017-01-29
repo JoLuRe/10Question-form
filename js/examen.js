@@ -11,7 +11,7 @@ window.onload = function(){
    gestionarXml(this);
   }
  };
- xhttp.open("GET", "xml/examen.xml", true);
+ xhttp.open("GET", "../xml/examen.xml", true);
  xhttp.send();
  
 /* //Para corregir gestionamos el contenido introducido en el formulario
