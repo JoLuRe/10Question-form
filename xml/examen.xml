@@ -1,75 +1,107 @@
 ﻿<?xml version="1.0" encoding="UTF-8"?>
 
-<!DOCTYPE exam SYSTEM "examen.dtd">
+<!DOCTYPE quiz SYSTEM "examen.dtd">
 
-<exam>
+<quiz>
 
-<!-- free TEXT type questions -->    
+<!-- free text type questions -->    
 
     <question id='item001'>
         <type>text</type>
-        <text>Apellido de Marilyn</text>
+        <title>1. Apellido de Marilyn</title>
         <answer>monroe</answer>
-    </question>
-
-    <question id='item002'>
-        <type>text</type>
-        <text>Rubia, Morena o Pelirroja?</text>
-        <answer>rubia</answer>
     </question>
 
 <!-- single SELECT type questions -->    
 
-    <question id='item003'>
+    <question id='item002'>
         <type>select</type>
-        <text>Medidas?</text>
-        <option>60-90-60</option>
-        <option>90-69-90</option> 
-        <option>90-60-90</option>
-        <option>96-69-96-</option>        
+        <title>2. Medidas?</title>
+        <option>a) 60-90-60</option>
+        <option>b) 90-69-90</option> 
+        <option>c) 90-60-90</option>
+        <option>d) 96-69-96-</option>        
         <answer>2</answer> <!-- 0, 1, 2, 3 -->
     </question>
 
-    <question id='item004'>
-        <type>select</type>
-        <text>Nacionalidad?</text>
-        <option>Sueca</option>
-        <option>Americana</option>
-        <option>Canadiense</option>
-        <option>Emigrante rusa</option>
-        <answer>1</answer> <!-- 0, 1, 2, 3 -->
-    </question>
-    
 <!-- select MULTIPLE type questions -->    
 
-    <question id='item005'>
+    <question id='item003'>
         <type>multiple</type>
-        <text>Qué afirmaciones son ciertas?</text>
-        <option>Su nombre era Norma Jeane Baker</option>
-        <option>Cursó estudios de interpretación</option>
-        <option>Participó en películas desde la más tierna infancia</option>
-        <option>Murió a los 36 años</option>
-        <option>Fue fiel a su marido a lo largo de toda su vida</option>
-        <option>Rodó un cortometraje porno que la CIA encubrió</option>
-        <option>Marlon Brando pagó por sus favores sexuales</option>
-        <option>Sólo rodo una decena de películas</option>
+        <title>3. Qué afirmaciones son ciertas?</title>
+        <option>a) Su nombre era Norma Jeane Baker</option>
+        <option>b) Cursó estudios de interpretación</option>
+        <option>c) Participó en películas desde la más tierna infancia</option>
+        <option>d) Murió a los 36 años</option>
+        <option>e) Fue fiel a su marido a lo largo de toda su vida</option>
+        <option>f) Rodó un cortometraje porno que la CIA encubrió</option>
+        <option>g) Marlon Brando pagó por sus favores sexuales</option>
+        <option>h) Sólo rodo una decena de películas</option>
         <answer>0</answer>
         <answer>3</answer>
         <answer>5</answer>
         <answer>6</answer>
     </question>
 
+<!-- RADIO type questions -->     
+
+    <question id='item004'>
+        <type>radio</type>
+        <title>4. Su escena más famosa</title>
+        <option>a) Bus stop</option>
+        <option>b) El Príncipe y la corista</option>
+        <option>c) La tentación vive arriba</option>
+        <option>d) Como atrapar a un millonario</option>
+        <answer>2</answer>
+    </question>    
+
+<!-- CHECKBOX type questions -->   
+
+    <question id='item005'>
+        <type>checkbox</type>
+        <title>5. Habilidades</title>
+        <option>a) Cantante</option>
+        <option>b) Actriz</option>
+        <option>c) Modelo</option>
+        <option>d) Presentadora de TV</option>
+        <answer>0</answer>
+        <answer>1</answer>
+        <answer>2</answer>
+    </question>    
+    
+<!-- free text type questions -->    
+
     <question id='item006'>
+        <type>text</type>
+        <title>6. Rubia, Morena o Pelirroja?</title>
+        <answer>rubia</answer>
+    </question>
+
+<!-- single SELECT type questions -->    
+
+    <question id='item007'>
+        <type>select</type>
+        <title>7. Nacionalidad?</title>
+        <option>a) Sueca</option>
+        <option>b) Americana</option>
+        <option>c) Canadiense</option>
+        <option>d) Emigrante rusa</option>
+        <answer>1</answer> <!-- 0, 1, 2, 3 -->
+    </question>
+    
+<!-- select MULTIPLE type questions -->    
+
+    <question id='item008'>
         <type>multiple</type>
-        <text>Mitos y leyendas</text>
-        <option>Tuvo un affaire con JF Kennedy</option>
-        <option>Tuvo un affaire con Robert Kennedy</option>
-        <option>Sus orígenes son humildes</option>
-        <option>Se casó 4 veces</option>
-        <option>Sus restos descansan en su California natal</option>
-        <option>Nunca posó desnuda</option>
-        <option>Tuvo dos hijos</option>
-        <option>Es poco conocido que tenía un ahermana gemela</option>
+        <title>8. Mitos y leyendas</title>
+        <option>a) Tuvo un affaire con JF Kennedy</option>
+        <option>b) Tuvo un affaire con Robert Kennedy</option>
+        <option>c) Sus orígenes son humildes</option>
+        <option>d) Se casó 4 veces</option>
+        <option>e) Sus restos descansan en su California natal</option>
+        <option>f) Nunca posó desnuda</option>
+        <option>g) Tuvo dos hijos</option>
+        <option>h) Es poco conocido que tenía una hermana gemela</option>
         <answer>0</answer>
         <answer>1</answer>
         <answer>2</answer>
@@ -78,64 +110,27 @@
     
 <!-- RADIO type questions -->     
 
-    <question id='item007'>
+    <question id='item009'>
         <type>radio</type>
-        <text>Su escena más famosa</text>
-        <option>Bus stop</option>
-        <option>El Príncipe y la corista</option>
-        <option>La tentación vive arriba</option>
-        <option>Como atrapar a un millonario</option>
-        <answer>2</answer>
-    </question>    
-
-    <question id='item008'>
-        <type>radio</type>
-        <text>Murió...</text>
-        <option>De muerte natural</option>
-        <option>Se suicidó</option>
-        <option>En accidente tráfico</option>
-        <option>Asesinada</option>
+        <title>9. Murió...</title>
+        <option>a) De muerte natural</option>
+        <option>b) Se suicidó</option>
+        <option>c) En accidente tráfico</option>
+        <option>d) Asesinada</option>
         <answer>3</answer>
     </question>
     
 <!-- CHECKBOX type questions -->   
 
-    <question id='item009'>
-        <type>checkbox</type>
-        <text>Habilidades</text>
-        <option>Cantante</option>
-        <option>Actriz</option>
-        <option>Modelo</option>
-        <option>Presentadora de TV</option>
-        <answer>0</answer>
-        <answer>1</answer>
-        <answer>2</answer>
-    </question>    
-    
     <question id='item010'>
         <type>checkbox</type>
-        <text>Películas</text>
-        <option>Solo ante el peligro</option>
-        <option>Cumbres borrascosas</option>
-        <option>La tentación vive arriba</option>
-        <option>Los caballeros las prefieren rubias</option>
+        <title>10. Películas</title>
+        <option>a) Solo ante el peligro</option>
+        <option>b) Cumbres borrascosas</option>
+        <option>c) La tentación vive arriba</option>
+        <option>d) Los caballeros las prefieren rubias</option>
         <answer>2</answer>
         <answer>3</answer>
     </question>    
     
-</exam>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+</quiz>
