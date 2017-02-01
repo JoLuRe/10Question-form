@@ -6,7 +6,7 @@
 
 <!-- free text type questions -->    
 
-    <question id='item001'>
+    <question id='item0'>
         <type>text</type>
         <title>1. Apellido de Marilyn</title>
         <answer>monroe</answer>
@@ -14,7 +14,7 @@
 
 <!-- single SELECT type questions -->    
 
-    <question id='item002'>
+    <question id='item1'>
         <type>select</type>
         <title>2. Medidas?</title>
         <option>a) 60-90-60</option>
@@ -26,7 +26,7 @@
 
 <!-- select MULTIPLE type questions -->    
 
-    <question id='item003'>
+    <question id='item2'>
         <type>multiple</type>
         <title>3. Qué afirmaciones son ciertas?</title>
         <option>a) Su nombre era Norma Jeane Baker</option>
@@ -45,7 +45,7 @@
 
 <!-- RADIO type questions -->     
 
-    <question id='item004'>
+    <question id='item3'>
         <type>radio</type>
         <title>4. Su escena más famosa</title>
         <option>a) Bus stop</option>
@@ -57,7 +57,7 @@
 
 <!-- CHECKBOX type questions -->   
 
-    <question id='item005'>
+    <question id='item4'>
         <type>checkbox</type>
         <title>5. Habilidades</title>
         <option>a) Cantante</option>
@@ -71,7 +71,7 @@
     
 <!-- free text type questions -->    
 
-    <question id='item006'>
+    <question id='item5'>
         <type>text</type>
         <title>6. Rubia, Morena o Pelirroja?</title>
         <answer>rubia</answer>
@@ -79,7 +79,7 @@
 
 <!-- single SELECT type questions -->    
 
-    <question id='item007'>
+    <question id='item6'>
         <type>select</type>
         <title>7. Nacionalidad?</title>
         <option>a) Sueca</option>
@@ -91,7 +91,7 @@
     
 <!-- select MULTIPLE type questions -->    
 
-    <question id='item008'>
+    <question id='item7'>
         <type>multiple</type>
         <title>8. Mitos y leyendas</title>
         <option>a) Tuvo un affaire con JF Kennedy</option>
@@ -110,7 +110,7 @@
     
 <!-- RADIO type questions -->     
 
-    <question id='item009'>
+    <question id='item8'>
         <type>radio</type>
         <title>9. Murió...</title>
         <option>a) De muerte natural</option>
@@ -122,7 +122,7 @@
     
 <!-- CHECKBOX type questions -->   
 
-    <question id='item010'>
+    <question id='item9'>
         <type>checkbox</type>
         <title>10. Películas</title>
         <option>a) Solo ante el peligro</option>
