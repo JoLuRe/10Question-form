@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html>
    <head>
       <title>Examen amb autocorrecció</title>
@@ -11,12 +11,12 @@
    </head>
    <body>
       
-
+<p id='mostrar' style="color:white"></p>
        <!-- codi inici -->    
 <div class='examen'>
 
 
-    <form id="myform" method='get'>
+    <form id='myexam' method='get'>
 <!--    <form role="form" name="examinationform" action='quiztest.asp?qtest=HTML' method='post'>
 
         <input type="hidden" name="starttime" value="1/26/2017 7:40:10 PM">
@@ -28,19 +28,21 @@
             <legend class="leyenda">Test your knowledge</legend>
     
 <!-- Question 1 TEXT -->
-        <p class='question impar' id='q001'></p>
+        <p class='question impar' id='q0'></p>
         <div class='text'>
 <!--            <label>Your answer: <input type='text' name='choice' id='2' value='' /></label>  -->
-            <label>Your answer: <input type='text' name='text_1'/></label>
+            <label>Your answer: <input type='text' id='text_1' name='text_1'/></label>
             <br>
-            <span class="solution">Correct answer: </span>
         </div>
-        <br/>
+		<img class="correction">
+		<br/>
+		<span class="solution">-0-123456789</span>
+		<br/>
 <!-- Question 2 SELECT -->
-        <p class='question impar' id='q002'></p>
+        <p class='question par' id='q1'></p>
         <div class='list'>
             <label>Your answer: 
-                <select name="select_1"> 
+                <select id='select_1' name='select_1'> 
 <!--                <option value="1"></option>
                 <option value="2"></option>
                 <option value="3"></option>
@@ -48,71 +50,79 @@
                 </select>        
             </label>    
             <br>
-            <span class="solution">Correct answer: </span>
         </div>
+		<img class="correction">
+		<br/>
+		<span class="solution">0-1-23456789</span>
         <br/>
 <!-- Question 3 MULTIPLE -->
-        <p class='question impar' id='q003'></p>
+        <p class='question impar' id='q2'></p>
         <div class='mlist'>
-            <label>Your answer: </label>
-            <select multiple name="multiple_1" size="8"> 
-                <option value="1"></option>
+            <label></label>
+            <select multiple id='multiple_1' name="multiple_1" size="8"> 
+<!--                <option value="1"></option>
                 <option value="2"></option>
                 <option value="3"></option>
                 <option value="4"></option>
                 <option value="5"></option>
                 <option value="6"></option>
                 <option value="7"></option>
-                <option value="8"></option>
+                <option value="8"></option>   -->
             </select>        
             <br>
-            <span class="solution">Correct answer: </span>
         </div>
+		<br/>
+		<span class="solution">01-2-3456789</span>
         <br/>  
 <!-- Question 4 RADIO -->
-        <p class='question impar' id='q004'></p>
-        <div class='radio'>
-            <label><input type='radio' name='radio_1' id='1' value='1' /></label>
+        <p class='question par' id='q3'></p>
+        <div class='radio' id="radio_1">
+<!--            <input type='radio' name='radio_1' id='radio_1' value='1' /><label>AA</label>
          </div>
          <div class='radio'>  
-            <label><input type='radio' name='radio_1' id='2' value='2' /></label>
+            <input type='radio' name='radio_1' id='radio_2' value='2' /><label>BB</label>
          </div>
          <div class='radio'>  
-            <label><input type='radio' name='radio_1' id='3' value='3' /></label>
+            <input type='radio' name='radio_1' id='radio_3' value='3' /><label>CC</label>
          </div>
          <div class='radio'>  
-            <label><input type='radio' name='radio_1' id='4' value='4' /></label>
-        </div>
-        <span class="solution">Correct answer: </span>
+            <input type='radio' name='radio_1' id='radio_4' value='4' /><label>DD</label> -->
+        </div>   
+		<br/>
+		<span class="solution">012-3-456789</span>
+        <br/>    
 <!-- Question 5 CHECKBOX -->
-        <p class='question impar' id='q005'></p>
-        <div class='checkbox'>
-            <label><input type='checkbox' name='checkbox_11' id='1' value='1' /></label>
+        <p class='question impar' id='q4'></p>
+        <div class='checkbox' id="checkbox_1">
+<!--			<input type='checkbox' name="chkbx"><label></label>
+<!--            <input type='checkbox' name='checkbox_11' id='1' value='1' /><label>AAA</label>
+        </div>
+ <!--       <div class='checkbox'>
+            <input type='checkbox' name='checkbox_12' id='2' value='2' /><label>BBB</label>
         </div>
         <div class='checkbox'>
-            <label><input type='checkbox' name='checkbox_12' id='2' value='2' /></label>
-        </div>
-        <div class='checkbox'>
-            <label><input type='checkbox' name='checkbox_13' id='3' value='3' /></label>
+            <input type='checkbox' name='checkbox_13' id='3' value='3' /><label>CCC</label>
         </div>
          <div class='checkbox'>
-            <label><input type='checkbox' name='checkbox_14' id='4' value='4' /></label>
-        </div>
-        <span class="solution">Correct answer: </span>
+            <input type='checkbox' name='checkbox_14' id='4' value='4' /><label>DDD</label> -->
+        </div>     
+		<br/>
+		<span class="solution">0123-4-56789</span>
         <br/>
 <!-- Question 6 TEXT -->
-        <p class='question par' id='q006'></p>
+        <p class='question par' id='q5'></p>
         <div class='text'>
             <label>Your answer: <input type='text' name='text_2'/></label>
             <br>
-            <span class="solution">Correct answer: </span>
         </div>
+		<br/>
+		<span class="solution">01234-5-6789</span>
         <br/>
 <!-- Question 7 SELECT -->
-        <p class='question par' id='q007'></p>
+        <p class='question impar' id='q6'></p>
         <div class='list'>
             <label>Your answer: 
-                <select name="select_2"> 
+                <select id='select_2' name="select_2"> 
 <!--                <option value="1"></option>
                 <option value="2"></option>
                 <option value="3"></option>
@@ -120,31 +130,33 @@
                 </select>        
             </label>    
             <br>
-            <span class="solution">Correct answer: </span>
         </div>
+		<br/>
+		<span class="solution">012345-6-789</span>
         <br/>
 <!-- Question 8 MULTIPLE -->
-        <p class='question par' id='q008'></p>
+        <p class='question par' id='q7'></p>
         <div class='mlist'>
-            <label>Your answer: </label>
-            <select multiple name="multiple_2" size="8"> 
-                <option value="1"></option>
+            <label></label>
+            <select multiple id="multiple_2" name="multiple_2" size="8"> 
+ <!--               <option value="1"></option>
                 <option value="2"></option>
                 <option value="3"></option>
                 <option value="4"></option>
                 <option value="5"></option>
                 <option value="6"></option>
                 <option value="7"></option>
-                <option value="8"></option>
+                <option value="8"></option>     -->
             </select>        
             <br>
-            <span class="solution">Correct answer: </span>
         </div>
+		<br/>
+		<span class="solution">0123456-7-89</span>
         <br/>  
 <!-- Question 9 RADIO -->
-        <p class='question par' id='q009'></p>
-        <div class='radio'>
-            <label><input type='radio' name='radio_2' id='1' value='1' /></label>
+        <p class='question impar' id='q8'></p>
+        <div class='radio' id="radio_2">
+<!--            <label><input type='radio' name='radio_2' id='1' value='1' /></label>
         </div>
         <div class='radio'>
             <label><input type='radio' name='radio_2' id='2' value='2' /></label>
@@ -153,14 +165,15 @@
             <label><input type='radio' name='radio_2' id='3' value='3' /></label>
         </div>
         <div class='radio'>
-            <label><input type='radio' name='radio_2' id='4' value='4' /></label>
-        </div>
-        <span class="solution">Correct answer: </span>
+            <label><input type='radio' name='radio_2' id='4' value='4' /></label> -->
+        </div>    
+		<br/>
+		<span class="solution">01234567-8-9</span>
         <br/>
 <!-- Question 10 CHECKBOX -->
-        <p class='question par' id='q010'></p>
-        <div class='checkbox'>
-            <label><input type='checkbox' name='checkbox_21' id='1' value='1' /></label>
+        <p class='question par' id='q9'></p>
+        <div class='checkbox' id="checkbox_2">
+<!--            <label><input type='checkbox' name='checkbox_21' id='1' value='1' /></label>
         </div>
         <div class='checkbox'>
             <label><input type='checkbox' name='checkbox_22' id='2' value='2' /></label>
@@ -169,9 +182,10 @@
             <label><input type='checkbox' name='checkbox_23' id='3' value='3' /></label>
         </div>
          <div class='checkbox'>
-            <label><input type='checkbox' name='checkbox_24' id='4' value='4' /></label>
-        </div>
-        <span class="solution">Correct answer: </span>
+            <label><input type='checkbox' name='checkbox_24' id='4' value='4' /></label> -->
+        </div>     
+		<br/>
+		<span class="solution">012345678-9-</span>
         <br/>
 
 <!--
@@ -180,7 +194,7 @@ TEXTAREA ??
 DATALIST ??
 -->
         <br/>    
-        <input type='submit' value=' Evaluate '>
+        <input type='submit' value='Score'>
       </fieldset>
     </form>
 
