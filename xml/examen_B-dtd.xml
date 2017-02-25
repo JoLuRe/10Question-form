@@ -1,0 +1,113 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE quiz SYSTEM "examen.dtd">
+<quiz>
+   <!-- free text type questions -->
+   <question id="item0">
+      <type>text</type>
+      <title>1. Escuderia del caballito rojo</title>
+      <answer>ferrari</answer>
+   </question>
+   <!-- single SELECT type questions -->
+   <question id="item1">
+      <type>select</type>
+      <title>2. Numero de Gran Premios del circuito?</title>
+      <option>a) 17</option>
+      <option>b) 18</option>
+      <option>c) 21</option>
+      <option>d) 20</option>
+      <answer>3</answer>
+      <!-- 0, 1, 2, 3 -->
+   </question>
+   <!-- select MULTIPLE type questions -->
+   <question id="item2">
+      <type>multiple</type>
+      <title>3. Qué afirmaciones son ciertas?</title>
+      <option>a) El GP de Australia se disputa en Sydney</option>
+      <option>b) Circuit of the Americas está en Texas</option>
+      <option>c) El campeonato se cierra en Abu Dhabi</option>
+      <option>d) En España tenemos 2 GPs: Barcelona y Valencia</option>
+      <option>e) Mercedes ganó en el 2016 por equipos</option>
+      <option>f) El GP de Malaysia se disputa de noche</option>
+      <option>g) 2015: 1-Hamilton, 2-Rosberg 2016: 1-Rosberg, 2-Hamilton</option>
+      <answer>1</answer>
+      <answer>2</answer>
+      <answer>4</answer>
+      <answer>6</answer>
+   </question>
+   <!-- RADIO type questions -->
+   <question id="item3">
+      <type>radio</type>
+      <title>4. Piloto con más victorias en Mónaco</title>
+      <option>a) Ayrton Senna</option>
+      <option>b) Michael Schumacher</option>
+      <option>c) Alain Prost</option>
+      <answer>0</answer>
+   </question>
+   <!-- CHECKBOX type questions -->
+   <question id="item4">
+      <type>checkbox</type>
+      <title>5. Patrocinadores</title>
+      <option>a) Rolex</option>
+      <option>b) Heineken</option>
+      <option>c) Cathay Pacific</option>
+      <option>d) Pirelli</option>
+      <option>e) British Petroleum</option>
+      <answer>0</answer>
+      <answer>1</answer>
+      <answer>3</answer>
+   </question>
+   <!-- free text type questions -->
+   <question id="item5">
+      <type>text</type>
+      <title>6. Que significa F1 GP?</title>
+      <answer>formula 1 grand prix</answer>
+   </question>
+   <!-- single SELECT type questions -->
+   <question id="item6">
+      <type>select</type>
+      <title>7. Circuito más largo del mundial</title>
+      <option>a) Sotchi Olympic Stadium (Rusia)</option>
+      <option>b) Circuito de Suzuka (Japón)</option>
+      <option>c) Spa-Francorchamps (Bélgica)</option>
+      <option>d) Silverstone (Gran Bretaña)</option>
+      <answer>2</answer>
+      <!-- 0, 1, 2, 3 -->
+   </question>
+   <!-- select MULTIPLE type questions -->
+   <question id="item7">
+      <type>multiple</type>
+      <title>8. Accidentes en carrera</title>
+      <option>a) Niki Lauda se quemó la cara</option>
+      <option>b) Jacques Villeneuve se partió la cadera en Brasil</option>
+      <option>c) Michael Schumacher se quedó en coma</option>
+      <option>d) Nelson Piquet sufrió la amputación de su mano derecha</option>
+      <option>e) Ayrton Senna falleció en accidente</option>
+      <option>h) Fernando Alonso resultó ileso del choque a 240 km/h</option>
+      <answer>0</answer>
+      <answer>4</answer>
+      <answer>5</answer>
+   </question>
+   <!-- RADIO type questions -->
+   <question id="item8">
+      <type>radio</type>
+      <title>9. Circuito más corto del mundial</title>
+      <option>a) Circuito Gilles Villeneuve (Canadá)</option>
+      <option>b) A1-Ring Spielberg (Austria)</option>
+      <option>c) Hungaroring (Hungría)</option>
+      <option>d) Circuit de Mónaco (Mónaco)</option>
+      <option>e) Circuito de Interlagos (Brasil)</option>
+      <answer>3</answer>
+   </question>
+   <!-- CHECKBOX type questions -->
+   <question id="item9">
+      <type>checkbox</type>
+      <title>10. Duraciones medias por vuelta</title>
+      <option>a) En torno a 1 minuto</option>
+      <option>b) En torno a 1 minuto 30 segundos</option>
+      <option>c) En torno a 1 minuto 45 segundos</option>
+      <option>d) En torno a 2 minutos 15 segundos</option>
+      <option>e) Hasta 4 minutos por vuelta en circuitos largos</option>
+      <answer>2</answer>
+      <answer>3</answer>
+   </question>
+</quiz>
