@@ -1,443 +1,473 @@
 ﻿// **********************************
 //      DEFINICION de VARIABLES
 // **********************************
-// esta variable sirve para almacenar el elemento del FORMulario
-var formElement = null;
-
-//esta variable almacena en número de preguntas de examen.xml
+// número de preguntas de examen.xml
 var numpreg = 10;
+// almacena el elemento del FORMulario
+var formElement = null;
+// almacena el fichero de datos XML
+var xmlDoc = null;
+// puntuacion
+var score = 0.0;
 
 //estas variables almacenarán las soluciones correctas de examen.xml
-////var sol0 = null; var sol1 = null; var sol2 = []; var sol3 = null; var sol4 = []; 
-////var sol5 = null; var sol6 = null; var sol7 = []; var sol8 = null; var sol9 = [];
-//var sol = [];
-//for (i = 0; i < numpreg; i++) {
-//    sol[i] = null;
-//}
 
-var sol_text_1 = null;
-var sol_select_1 = null;
-var sol_mult_1 = []; var sol_multiple_1 = "";
-var sol_radio_1 = null;
-var sol_ckx_1 = []; var sol_checkbox_1 = "";
+// null
+var sol_text = "";
+var sol_text_1 = "";
+var sol_text_2 = "";
 
-var sol_text_2 = null;
-var sol_select_2 = null;
-var sol_mult_2 = []; var sol_multiple_2 = "";
-var sol_radio_2 = null;
-var sol_ckx_2 = []; var sol_checkbox_2 = "";
+// ""
+var sol_select = -1;
+var sol_select_1 = -1;
+var sol_select_2 = -1;
 
-//estas variables almacenarán las respuestas daadas en examen.html
-////var resp0 = null; var resp1 = null; var resp2 = []; var resp3 = null; var resp4 = [];
-////var resp5 = null; var resp6 = null; var resp7 = []; var resp8 = null; var resp9 = [];
-//var resp = [];
-//for (i = 0; i < numpreg; i++) {
-//    resp[i] = null;
-//}
+var sol_mult = [];
+var sol_multiple = "";
+var sol_multiple_1 = "";
+var sol_multiple_2 = "";
 
-var resp_text_1 = null;
-var resp_select_1 = null;
-var resp_mult_1 = []; var resp_multiple_1 = "";
-var resp_radio_1 = null;
-var resp_ckx_1 = []; var resp_checkbox_1 = "";
+// null
+var sol_radio = -1;
+var sol_radio_1 = -1;
+var sol_radio_2 = -1;
 
-var resp_text_2 = null;
-var resp_select_2 = null;
-var resp_mult_2 = []; var resp_multiple_2 = "";
-var resp_radio_2 = null;
-var resp_ckx_2 = []; var resp_checkbox_2 = "";
+var sol_ckx = [];
+var sol_checkbox = "";
+var sol_checkbox_1 = "";
+var sol_checkbox_2 = "";
 
-var score = null;
+//estas variables almacenarán las respuestas dadas en examen.html
 
+var resp_text = "";
+var resp_text_1 = "";
+var resp_text_2 = "";
+
+var resp_select = -1;
+var resp_select_1 = -1;
+var resp_select_2 = -1;
+
+var resp_mult = [];
+var resp_multiple = "";
+var resp_multiple_1 = "";
+var resp_multiple_2 = "";
+
+var resp_radio = -1;
+var resp_radio_1 = -1;
+var resp_radio_2 = -1;
+
+var resp_ckx = [];
+var resp_checkbox = "";
+var resp_checkbox_1 = "";
+var resp_checkbox_2 = "";
+
+// Time management
+
+var quiz_time = 15; //available time
+var now = new Date().getTime();
+var limit = now + quiz_time;
 // **********************************
 //      DEFINICION de EVENTO
 // **********************************
 //al cargar la página...
-window.onload = function(){
-    
-  formElement=document.getElementById('myexam');
-   
-  // Corregir al hacer clic en el botón    
-  formElement.onsubmit=function(){
-      borrarCorreccion();
-      //corregirText();
-      //corregirSelect();
-      //corregirMultiple();
-      //corregirRadio(); 
-      //corregirCheckbox(); 
-	  showScore();
-      return false;
-   }
+window.onload = function () {
+	formElement = document.getElementById('myexam');
 
-   //pide los datos, lee examen.xml del servidor (por http)
-   var xhttp = new XMLHttpRequest();
-   xhttp.onreadystatechange = function() {
-      if (this.readyState == 4 && this.status == 200) {
-         gestionarXml(this);
-      }
-   };
-   xhttp.open("GET", "xml/examen.xml", true);
-   xhttp.send();
-}; 
+	// Corregir al hacer clic en el botón    
+	formElement.onsubmit = function () {
+		resetPuntuacion();
+		corregirText();
+		corregirSelect();
+		corregirMultiple();
+		corregirRadio();
+		corregirCheckbox();
+		showScore();
+		return false;
+	};
 
-//   //Para corregir gestionamos el contenido introducido en el formulario
-//   formElement=document.getElementById('myexamm');
-//   formElement.onsubmit=function(){
-////      var s=formElement.elements[0].value;
-////      if (lowercase(s)==sol[0]) alert('Respuesta correcta');
-////    TEXT
-//      resp[0] = formElement.elements[0].value;
-//      if (lowercase(resp[0]) == sol[0]) alert('Respuesta correcta');
-//      else alert('Respuesta incorrecta');
-//  
-////      var sel = formElement.elements[1];  
-////    SELECT single
-//      resp[1] = formElement.elements[1];  
-//      if (resp[1].selectedIndex == sol[1]) alert('Select correcto'); 
-//      else alert('Select incorrecto');
-//  
-////    MULTIPLE select
-//      resp[2] = formElement.elements[2];  
-//      if (resp[2].selectedIndex == sol[2]) alert('Select correcto'); 
-//      else alert('Select incorrecto');
-//
-////    RADIO single
-//      resp[3] = formElement.elements[3];  
-//      if (resp[3].selectedIndex == sol[3]) alert('Select correcto'); 
-//      else alert('Select incorrecto');
-//
-////    CHECKBOX 0 o más
-//      resp[4] = formElement.elements[4];  
-//      if (resp[4].selectedIndex == sol[4]) alert('Select correcto'); 
-//      else alert('Select incorrecto');
-//       
-//      return false;
-//   }
+	//pide los datos, lee examen.xml del servidor (por http)
+	var xhttp = new XMLHttpRequest();
+	xhttp.onreadystatechange = function () {
+		if (this.readyState == 4 && this.status == 200) {
+			gestionarXml(this);
+		}
+	};
+//	xhttp.open("GET", "https://rawgit.com/JoLuRe/10Question-form/master/xml/examen.xml", true);
+	xhttp.open("GET", "xml/examen.xml", true);
+
+	xhttp.send();
+};
 
 // **********************************
 //      DEFINICION de FUNCION
 // **********************************
-//funcion donde cogemos los datos del xml y los ponemos en el html 
+//Read XML data (title, answer options and correct answers)
+//Display titles and options in HTML
+//Store correct answers for evaluation
 
-function gestionarXml(dadesXml){
- 
-   //Rellenamos el texto de las preguntas, de las opciones de respuesta y guardamos las respuestas
-   var xmlDoc = dadesXml.responseXML;
-   // Rellenamos el texto del título de las preguntas
-   for (i = 0; i < numpreg; i++) { 
-      //var qn='q'+i; 
-      //document.getElementById(qn).innerHTML = xmlDoc.getElementsByTagName("title")[i].childNodes[0].nodeValue;
-      document.getElementsByClassName("question")[i].innerHTML = xmlDoc.getElementsByTagName("title")[i].childNodes[0].nodeValue;
-   } 
+function gestionarXml(dadesXml) {
 
-   // Rellenamos las opciones de respuesta
-   // document se refiere al documento HTML, xmlDOC es el documento leido XML 
+	// Store the XML data descriptor
+	// "document" refers to HTML document, "xmlDOC" refers to XML document 
+	xmlDoc = dadesXml.responseXML;
 
-   // TEXT_1 --> no tiene opciones
-    
-   // SELECT_1 single
-   //var select = document.getElementsByTagName("select")[0];
-   var html_select = document.getElementById("select_1");
-   //var html_select = document.getElementsByTagName("select")[0];
-   //numero de opciones que hay en el XML
-   var xml_select = xmlDoc.getElementById("item1");
-   //var nopciones = xmlDoc.getElementsByTagName("option").length; 
-   var nopciones = xml_select.getElementsByTagName("option").length; 
-   //Bucle para rellenar todas las opciones de select
-   for (i = 0; i < nopciones; i++) { 
-      var option = document.createElement("option");
-      option.text = xml_select.getElementsByTagName("option")[i].childNodes[0].nodeValue;
-      option.value=i+1;
-      html_select.options.add(option);
-   } 
-   
-	// MULTIPLE_1 select
-   var html_select = document.getElementById("multiple_1");
-   //numero de opciones que hay en el XML
-   var xml_select = xmlDoc.getElementById("item2");
-   var nopciones = xml_select.getElementsByTagName("option").length; 
-   //Bucle para rellenar todas las opciones de select
-   for (i = 0; i < nopciones; i++) { 
-      var option = document.createElement("option");
-      option.text = xml_select.getElementsByTagName("option")[i].childNodes[0].nodeValue;
-      option.value=i+1;
-      html_select.options.add(option);
-   } 
+	// ****************************** Fill-in questions' titles
 
-   	// RADIO_1
-	var radioContainer=document.getElementById("radio_1");
-	var nopciones = xmlDoc.getElementById("item3").getElementsByTagName('option').length;
-	for (i = 0; i < nopciones; i++) { 
-		var input = document.createElement("input");
-		var label = document.createElement("label");
-		var br = document.createElement("br");
-		label.innerHTML = xmlDoc.getElementById("item3").getElementsByTagName('option')[i].childNodes[0].nodeValue;
-		label.setAttribute("for", i);
-		input.type="radio";
-		input.name="rad";
-		input.id=i;    
-		radioContainer.appendChild(input);
-		radioContainer.appendChild(label);
-		radioContainer.appendChild(br);
+	for (i = 0; i < numpreg; i++) {
+		document.getElementsByClassName("question")[i].innerHTML = xmlDoc.getElementsByTagName("title")[i].childNodes[0].nodeValue;
 	}
-	
-  	//CHECKBOX_1
- 	//creamos un elemento h3 para introducirlo como título en el checkboxContainer (div)
- 	var checkboxContainer=document.getElementById("checkbox_1");
- 	//var h3 = document.createElement("h3");
-	//h3.innerHTML = xmlDoc.getElementsByTagName("title")[2].childNodes[0].nodeValue;
-	//checkboxContainer.appendChild(h3); 
 
- 	//añadimos todas las opciones de checkbox (como <input type='checkbox' name='color'>) con su label
- 	var nopciones = xmlDoc.getElementById("item4").getElementsByTagName('option').length;
- 	for (i = 0; i < nopciones; i++) { 
-    	var input = document.createElement("input");
-    	var label = document.createElement("label");
-    	var br = document.createElement("br");
-    	label.innerHTML = xmlDoc.getElementById("item4").getElementsByTagName('option')[i].childNodes[0].nodeValue;
-    	label.setAttribute("for", i);
-    	input.type="checkbox";
-    	input.name="chkbx";
-		//input.id="color_"+i;;    
-    	input.id=i;    
-    	checkboxContainer.appendChild(input);
-    	checkboxContainer.appendChild(label);
-		checkboxContainer.appendChild(br);
-	}  
+	// ****************************** Fill-in answer options
 
+	// TEXT_1 and TEXT_2 --> no options
+	// "text_1", "item0"
+	// "text_2", "item5"
 
-   // TEXT_2 --> no tiene opciones
-   // SELECT_2 single
-   var html_select = document.getElementById("select_2");
-   var xml_select = xmlDoc.getElementById("item6");
-   var nopciones = xml_select.getElementsByTagName("option").length; 
-   for (i = 0; i < nopciones; i++) { 
-      var option = document.createElement("option");
-      option.text = xml_select.getElementsByTagName("option")[i].childNodes[0].nodeValue;
-      option.value=i+1;
-      html_select.options.add(option);
-   } 
-   // MULTIPLE_2 select
-   var html_select = document.getElementById("multiple_2");
-   //numero de opciones que hay en el XML
-   var xml_select = xmlDoc.getElementById("item7");
-   var nopciones = xml_select.getElementsByTagName("option").length; 
-   //Bucle para rellenar todas las opciones de select
-   for (i = 0; i < nopciones; i++) { 
-      var option = document.createElement("option");
-      option.text = xml_select.getElementsByTagName("option")[i].childNodes[0].nodeValue;
-      option.value=i+1;
-      html_select.options.add(option);
-   } 
-	// RADIO_2
-	var radioContainer=document.getElementById("radio_2");
-	var nopciones = xmlDoc.getElementById("item8").getElementsByTagName('option').length;
-	for (i = 0; i < nopciones; i++) { 
-		var input = document.createElement("input");
-		var label = document.createElement("label");
-		var br = document.createElement("br");
-		label.innerHTML = xmlDoc.getElementById("item8").getElementsByTagName('option')[i].childNodes[0].nodeValue;
-		label.setAttribute("for", i);
-		input.type="radio";
-		input.name="rad";
-		input.id=i;    
-		radioContainer.appendChild(input);
-		radioContainer.appendChild(label);
-		radioContainer.appendChild(br);
-	}	
-    //CHECKBOX_2
-	var checkboxContainer=document.getElementById("checkbox_2");
- 	var nopciones = xmlDoc.getElementById("item9").getElementsByTagName('option').length;
- 	for (i = 0; i < nopciones; i++) { 
-    	var input = document.createElement("input");
-    	var label = document.createElement("label");
-    	var br = document.createElement("br");
-    	label.innerHTML = xmlDoc.getElementById("item9").getElementsByTagName('option')[i].childNodes[0].nodeValue;
-    	label.setAttribute("for", i);
-    	input.type="checkbox";
-    	input.name="chkbx";
-    	input.id=i;    
-    	checkboxContainer.appendChild(input);
-    	checkboxContainer.appendChild(label);
-		checkboxContainer.appendChild(br);
-	}  
-	
-   // Guardamos todas las respuestas correctas
+	// SELECT_1 single and SELECT_2 single
+	fillOptionsSelect("select_1", "item1");
+	fillOptionsSelect("select_2", "item6");
 
-	// TEXT_1
-	
-	var sol_text_1 = xmlDoc.getElementById("item0").getElementsByTagName("answer")[0].childNodes[0].nodeValue;	
-    	
-    // SELECT_1
-    sol_select_1 = parseInt(xmlDoc.getElementById("item1").getElementsByTagName("answer")[0].childNodes[0].nodeValue);
-    
-	// MULTIPLE_1
- 	var nsoluciones = xmlDoc.getElementById("item2").getElementsByTagName('answer').length;
- 	for (i = 0; i < nsoluciones; i++) { 
-		sol_mult_1[i]=xmlDoc.getElementById("item2").getElementsByTagName("answer")[i].childNodes[0].nodeValue;
-		sol_multiple_1 = sol_multiple_1 + sol_mult_1[i];
-	}
-    
-	// RADIO_1
-	sol_radio_1=parseInt(xmlDoc.getElementById("item3").getElementsByTagName("answer")[0].childNodes[0].nodeValue);
-	
-	// CHECKBOX_1
- 	var nsoluciones = xmlDoc.getElementById("item4").getElementsByTagName('answer').length;
- 	for (i = 0; i < nsoluciones; i++) { 
-		sol_ckx_1[i]=xmlDoc.getElementById("item4").getElementsByTagName("answer")[i].childNodes[0].nodeValue;
-		sol_checkbox_1 = sol_checkbox_1 + sol_ckx_1[i];
-	}
-    
-	// TEXT_2
-	var sol_text_2 = xmlDoc.getElementById("item5").getElementsByTagName("answer")[0].childNodes[0].nodeValue;	
-	//var sol_text_2 = sol_text_2.toUpperCase();	
-	//var sol_text_2 = sol_text_2.toLowerCase();	
-    
-	// SELECT_2
-	sol_select_2=parseInt(xmlDoc.getElementById("item6").getElementsByTagName("answer")[0].childNodes[0].nodeValue);
-    
-	// MULTIPLE_2
- 	var nsoluciones = xmlDoc.getElementById("item7").getElementsByTagName('answer').length;
- 	for (i = 0; i < nsoluciones; i++) { 
-		sol_mult_2[i]=xmlDoc.getElementById("item7").getElementsByTagName("answer")[i].childNodes[0].nodeValue;
-		sol_multiple_2 = sol_multiple_2 + sol_mult_2[i];
-	}
-	//sol_multiple_2=parseInt(xmlDoc.getElementsByTagName("answer")[7].childNodes[0].nodeValue);
-    
-	// RADIO_2
-	sol_radio_2=parseInt(xmlDoc.getElementById("item8").getElementsByTagName("answer")[0].childNodes[0].nodeValue);
-    
-	// CHECKBOX_2
- 	var nsoluciones = xmlDoc.getElementById("item9").getElementsByTagName('answer').length;
- 	for (i = 0; i < nsoluciones; i++) { 
-		sol_ckx_2[i]=xmlDoc.getElementById("item9").getElementsByTagName("answer")[i].childNodes[0].nodeValue;
-		sol_checkbox_2 = sol_checkbox_2 + sol_ckx_2[i];
-	}
-	//sol_checkbox_2=parseInt(xmlDoc.getElementsByTagName("answer")[9].childNodes[0].nodeValue);
-	
+	// MULTIPLE_1 select and MULTIPLE_2 select
+	fillOptionsMultiple("multiple_1", "item2");
+	fillOptionsMultiple("multiple_2", "item7");
+
+	// RADIO_1 and RADIO_2
+	fillOptionsRadio("radio_1", "item3");
+	fillOptionsRadio("radio_2", "item8");
+
+	// CHECKBOX_1 and CHECKBOX_2
+	fillOptionsCheckbox("checkbox_1", "item4");
+	fillOptionsCheckbox("checkbox_2", "item9");
+
+	// ****************************** Store the correct answers
+
+	// TEXT_1 and TEXT_2
+	sol_text_1 = storeAnswerText("item0");
+	sol_text_2 = storeAnswerText("item5");
+
+	// SELECT_1 single and SELECT_2 single
+	sol_select_1 = storeAnswerSelect("item1");
+	sol_select_2 = storeAnswerSelect("item6");
+
+	// MULTIPLE_1 select and MULTIPLE_2 select
+	sol_multiple_1 = storeAnswerMultiple("item2");
+	sol_multiple_2 = storeAnswerMultiple("item7");
+
+	// RADIO_1 and RADIO_2
+	sol_radio_1 = storeAnswerRadio("item3");
+	sol_radio_2 = storeAnswerRadio("item8");
+
+	// CHECKBOX_1 and CHECKBOX_2
+	sol_checkbox_1 = storeAnswerCheckbox("item4");
+	sol_checkbox_2 = storeAnswerCheckbox("item9");
+
 	// debugging
-	
-	//document.getElementById("mostrar").style.color="white";	
-	//document.getElementById("mostrar").innerHTML = numpreg;
-	//document.getElementById("mostrar").innerHTML = sol_text_1;
-	//document.getElementById("mostrar").innerHTML = sol_select_1;
-	//document.getElementById("mostrar").innerHTML = sol_multiple_1;
-	//document.getElementById("mostrar").innerHTML = sol_radio_1;
-	//document.getElementById("mostrar").innerHTML = sol_checkbox_1;
-	//document.getElementById("mostrar").innerHTML = sol_text_2;
-	//document.getElementById("mostrar").innerHTML = sol_select_2;
-	//document.getElementById("mostrar").innerHTML = sol_multiple_2;
-	//document.getElementById("mostrar").innerHTML = sol_radio_2;
-	//document.getElementById("mostrar").innerHTML = sol_checkbox_2;
-	
-	document.getElementById("mostrar").innerHTML = 
-		'numpreg: ' + numpreg +
-		' score: ' + score + "<br/>" +
-		'sol_text_1: ' + sol_text_1 + 
-		' sol_select_1: ' + sol_select_1 + 
-		' sol_multiple_1: ' + sol_multiple_1 +
-		' sol_radio_1: ' + sol_radio_1 + 
-		' sol_checkbox_1: ' + sol_checkbox_1 + "<br/>" +
-		'sol_text_2: ' + sol_text_2 + 
-		' sol_select_2: ' + sol_select_2 + 
-		' sol_multiple_2: ' +  sol_multiple_2 +
-		' sol_radio_2: ' + sol_radio_2 + 
-		' sol_checkbox_2: ' + sol_checkbox_2;
-	
-};
+	//document.getElementById("mostrar").innerHTML = 
+	//	'numpreg: ' + numpreg +
+	//	' score: ' + score + "<br/>" +
+	//	'sol_text_1: ' + sol_text_1.charAt(0).toUpperCase() + sol_text_1.substr(1) +
+	//	' sol_select_1: ' + sol_select_1 + 
+	//	' sol_multiple_1: ' + sol_multiple_1 +
+	//	' sol_radio_1: ' + sol_radio_1 + 
+	//	' sol_checkbox_1: ' + sol_checkbox_1 + "<br/>" +
+	//	'sol_text_2: ' + sol_text_2 + 
+	//	' sol_select_2: ' + sol_select_2 + 
+	//	' sol_multiple_2: ' +  sol_multiple_2 +
+	//	' sol_radio_2: ' + sol_radio_2 + 
+	//	' sol_checkbox_2: ' + sol_checkbox_2;
+}
 
 //****************************************************************************************************
-//implementación de la corrección
-//function corregirNumber(){
-//  var s=formElement.elements[0].value;     
-//  if (s==secret) darRespuesta("P1: Exacto!");
-//  else {
-//    if (s>secret) darRespuesta("P1: Te has pasado");
-//    else darRespuesta("P1: Te has quedado corto");
-//  }
-//}
+// fillOptionsX functions (HTML_element, XML_element)
+//****************************************************************************************************
 
-function corregirText(){
-	// TEXT_1
-	document.getElementsByClassName("solution")[0].innerHTML = "Correct answer: " + sol_text_1;
-	resp_text_1=formElement.elements[0].value;
-	resp_text_1 = resp_text_1.toLowerCase();
-	if (resp_text_1 == sol_text_1) {
-		informSuccess(0);
-	  	score++;
-  	}
-  	else {
-    	informError(0);
-  	}
-	// TEXT_2
-	document.getElementsByClassName("solution")[5].innerHTML = "Correct answer: " + sol_text_2;
-	resp_text_2=formElement.elements[5].value;
-	resp_text_2 = resp_text_2.toLowerCase();
-	if (resp_text_2 == sol_text_2) {
-		informSuccess(5);
-	  	score++;
-  	}
-  	else {
-    	informError(5);
-  	}
+function fillOptionsSelect(sel_elem, item_elem) {
+	var selectContainer = document.getElementById(sel_elem);
+	//numero de opciones que hay en el XML
+	var xml_select = xmlDoc.getElementById(item_elem);
+	var nopciones = xml_select.getElementsByTagName("option").length;
+	//Bucle para rellenar todas las opciones de select
+	for (i = 0; i < nopciones; i++) {
+		var option = document.createElement("option");
+		option.text = xml_select.getElementsByTagName("option")[i].childNodes[0].nodeValue;
+		option.value = i + 1;
+		selectContainer.options.add(option);
+	}
 }
 
-//function corregirSelect(){
-//  var r1 = formElement.elements[1];  
-//  if (r1.selectedIndex==sol_select_1) darRespuesta("P2: Correcto");
-//  else darRespuesta("P2: Error");
-//}
+function fillOptionsMultiple(mult_elem, item_elem) {
+	var multipleContainer = document.getElementById(mult_elem);
+	//numero de opciones que hay en el XML
+	var xml_select = xmlDoc.getElementById(item_elem);
+	var nopciones = xml_select.getElementsByTagName("option").length;
+	multipleContainer.size = nopciones;
+	//Bucle para rellenar todas las opciones de select
+	for (i = 0; i < nopciones; i++) {
+		var option = document.createElement("option");
+		option.text = xml_select.getElementsByTagName("option")[i].childNodes[0].nodeValue;
+		option.value = i;
+		multipleContainer.options.add(option);
+	}
+}
 
-//function corregirCheckbox(){
-//  var f=document.getElementById('myexam');
-//  var escorrecta = [];
-//  for (i = 0; i < f.color.length; i++) {
-//   if (f.color[i].checked) {
-//    escorrecta[i]=false;     
-//    for (j = 0; j < respuestasCheckbox.length; j++) {
-//     if (i==respuestasCheckbox[j]) escorrecta[i]=true;
-//    }
-//   } 
-//  }
-//  for (i = 0; i < f.color.length; i++) {
-//   
-//   if (f.color[i].checked) {
-//    if (escorrecta[i]) {
-//     darRespuesta("P3: "+i+" correcta");    
-//    } else {
-//     darRespuesta("P3: "+i+" incorrecta");
-//    }   
-//   }
-//  }
-//}
+function fillOptionsRadio(rad_elem, item_elem) {
+	var radioContainer = document.getElementById(rad_elem);
+	var xml_select = xmlDoc.getElementById(item_elem);
+	var nopciones = xml_select.getElementsByTagName('option').length;
+	for (i = 0; i < nopciones; i++) {
+		var input = document.createElement("input");
+		var label = document.createElement("label");
+		var br = document.createElement("br");
+		label.innerHTML = xml_select.getElementsByTagName('option')[i].childNodes[0].nodeValue;
+		label.setAttribute("for", i);
+		input.type = "radio";
+		input.name = rad_elem;
+		input.id = rad_elem + "_" + i;
+		input.value = i;
+		radioContainer.appendChild(input);
+		radioContainer.appendChild(label);
+		radioContainer.appendChild(br);
+	}
+}
 
-function showScore(){
-	alert('Puntuación obtenida: ' + score);	
+function fillOptionsCheckbox(cbx_elem, item_elem) {
+	var checkboxContainer = document.getElementById(cbx_elem);
+	var xml_select = xmlDoc.getElementById(item_elem);
+	var nopciones = xml_select.getElementsByTagName('option').length;
+	for (i = 0; i < nopciones; i++) {
+		var input = document.createElement("input");
+		var label = document.createElement("label");
+		var br = document.createElement("br");
+		label.innerHTML = xmlDoc.getElementById(item_elem).getElementsByTagName('option')[i].childNodes[0].nodeValue;
+		label.setAttribute("for", i);
+		input.type = "checkbox";
+		input.name = cbx_elem;
+		input.id = cbx_elem + "_" + i;
+		input.value = i;
+		checkboxContainer.appendChild(input);
+		checkboxContainer.appendChild(label);
+		checkboxContainer.appendChild(br);
+	}
+}
+
+//****************************************************************************************************
+// storeAnswerX functions (XML_element)
+//****************************************************************************************************
+
+function storeAnswerText(item_elem) {
+	sol_text = xmlDoc.getElementById(item_elem).getElementsByTagName("answer")[0].childNodes[0].nodeValue;
+	return sol_text;
+}
+
+function storeAnswerSelect(item_elem) {
+	sol_select = parseInt(xmlDoc.getElementById(item_elem).getElementsByTagName("answer")[0].childNodes[0].nodeValue);
+	return sol_select;
+}
+
+function storeAnswerMultiple(item_elem) {
+	sol_multiple = "";
+	var nsoluciones = xmlDoc.getElementById(item_elem).getElementsByTagName('answer').length;
+	for (i = 0; i < nsoluciones; i++) {
+		sol_mult[i] = xmlDoc.getElementById(item_elem).getElementsByTagName("answer")[i].childNodes[0].nodeValue;
+		sol_multiple = sol_multiple + sol_mult[i];
+	}
+	return sol_multiple;
+}
+
+function storeAnswerRadio(item_elem) {
+	sol_radio = parseInt(xmlDoc.getElementById(item_elem).getElementsByTagName("answer")[0].childNodes[0].nodeValue);
+	return sol_radio;
+}
+
+function storeAnswerCheckbox(item_elem) {
+	sol_checkbox = "";
+	var nsoluciones = xmlDoc.getElementById(item_elem).getElementsByTagName('answer').length;
+	for (i = 0; i < nsoluciones; i++) {
+		sol_ckx[i] = xmlDoc.getElementById(item_elem).getElementsByTagName("answer")[i].childNodes[0].nodeValue;
+		sol_checkbox = sol_checkbox + sol_ckx[i];
+	}
+	return sol_checkbox;
+}
+
+//****************************************************************************************************
+// corregirX functions 
+//****************************************************************************************************
+
+function corregirText() {
+	resp_text_1 = evaluateText(sol_text_1, "sol_text_1", "text_1");
+	resp_text_2 = evaluateText(sol_text_2, "sol_text_2", "text_2");
+}
+
+function corregirSelect() {
+	resp_select_1 = evaluateSelect(sol_select_1, "sol_select_1", "select_1");
+	resp_select_2 = evaluateSelect(sol_select_2, "sol_select_2", "select_2");
+}
+
+function corregirMultiple() {
+	resp_multiple_1 = evaluateMultiple(sol_multiple_1, "sol_multiple_1", "multiple_1");
+	resp_multiple_2 = evaluateMultiple(sol_multiple_2, "sol_multiple_2", "multiple_2");
+}
+
+function corregirRadio() {
+	resp_radio_1 = evaluateRadio(sol_radio_1, "sol_radio_1", "radio_1");
+	resp_radio_2 = evaluateRadio(sol_radio_2, "sol_radio_2", "radio_2");
+}
+
+function corregirCheckbox() {
+	resp_checkbox_1 = evaluateCheckbox(sol_checkbox_1, "sol_checkbox_1", "checkbox_1");
+	resp_checkbox_2 = evaluateCheckbox(sol_checkbox_2, "sol_checkbox_2", "checkbox_2");
+}
+
+//****************************************************************************************************
+// evaluateX functions (correct_solution_variable, solution_display_HTML_element, form_element)
+//****************************************************************************************************
+
+function evaluateText(correct_text, sol_elem, frm_elem) {
+	resp_text = document.getElementById(frm_elem).value;
+	resp_text = resp_text.toLowerCase();
+	if (resp_text == correct_text) {
+		informSuccess(frm_elem);
+	} else {
+		document.getElementById(sol_elem).innerHTML = "Correct answer: " + correct_text.charAt(0).toUpperCase() + correct_text.substr(1);
+		informError(frm_elem);
+	}
+	return resp_text;
+}
+
+function evaluateSelect(correct_select, sol_elem, frm_elem) {
+	resp_select = -1;
+	resp_select = document.getElementById(frm_elem).selectedIndex;
+	if (resp_select == correct_select) {
+		informSuccess(frm_elem);
+	} else {
+		document.getElementById(sol_elem).innerHTML = "Correct answer: " + document.getElementById(frm_elem).getElementsByTagName("option")[correct_select].innerHTML;
+		informError(frm_elem);
+	}
+	return resp_select;
+}
+
+function evaluateMultiple(correct_multiple, sol_elem, frm_elem) {
+	resp_multiple = "";
+	multiple_q = document.getElementById(frm_elem);
+	multiple_o = multiple_q.getElementsByTagName('option');
+	multiple_o_length = multiple_o.length;
+	for (i = 0; i < multiple_o_length; i++) {
+		if (multiple_o[i].selected) {
+			resp_mult[i] = multiple_o[i].value;
+			resp_multiple = resp_multiple + resp_mult[i];
+		}
+	}
+	if (resp_multiple == correct_multiple) {
+		informSuccess(frm_elem);
+	} else {
+		var correction = "Correct answer: ";
+		num_resp_ok = correct_multiple.length;
+		for (j = 0; j < num_resp_ok; j++) {
+			idx_resp_ok = correct_multiple.charAt(j);
+			idx = parseInt(idx_resp_ok);
+			txt_resp_ok = multiple_q.getElementsByTagName("option")[idx].innerHTML;
+			correction = correction + "<br/>" + txt_resp_ok;
+		}
+		document.getElementById(sol_elem).innerHTML = correction;
+		informError(frm_elem);
+	}
+	return resp_multiple;
+}
+
+function evaluateRadio(correct_radio, sol_elem, frm_elem) {
+	resp_radio = -1;
+	radio_q = document.getElementById(frm_elem);
+	radio_o = radio_q.getElementsByTagName('input');
+	radio_o_length = radio_o.length;
+	for (i = 0; i < radio_o_length; i++) {
+		if (radio_o[i].checked) { //if this radio button is checked
+			resp_radio = radio_o[i].value;
+		}
+	}
+	if (resp_radio == correct_radio) {
+		informSuccess(frm_elem);
+	} else {
+		document.getElementById(sol_elem).innerHTML = "Correct answer: " + radio_q.getElementsByTagName("label")[correct_radio].innerHTML;
+		informError(frm_elem);
+	}
+	return resp_radio;
+}
+
+function evaluateCheckbox(correct_checkbox, sol_elem, frm_elem) {
+	resp_checkbox = "";
+	checkbox_q = document.getElementById(frm_elem);
+	checkbox_o = checkbox_q.getElementsByTagName('input');
+	checkbox_o_length = checkbox_o.length;
+	for (i = 0; i < checkbox_o_length; i++) {
+		if (checkbox_o[i].checked) {
+			//resp_ckx[i] = checkbox_q.getElementsByTagName("input")[i].value;
+			resp_ckx[i] = checkbox_o[i].value;
+			resp_checkbox = resp_checkbox + resp_ckx[i];
+		}
+	}
+	if (resp_checkbox == correct_checkbox) {
+		informSuccess(frm_elem);
+	} else {
+		var correction = "Correct answer: ";
+		num_resp_ok = correct_checkbox.length;
+		for (j = 0; j < num_resp_ok; j++) {
+			idx_resp_ok = correct_checkbox.charAt(j);
+			idx = parseInt(idx_resp_ok);
+			txt_resp_ok = checkbox_q.getElementsByTagName("label")[idx].innerHTML;
+			correction = correction + "<br/>" + txt_resp_ok;
+		}
+		document.getElementById(sol_elem).innerHTML = correction;
+		informError(frm_elem);
+	}
+	return resp_checkbox;
+}
+
+function showScore() {
+
+	//document.getElementById("mostrar").innerHTML = 
+	//	'numpreg: ' + numpreg +
+	//	' score: ' + score + "<br/>" +
+	//	'sol_text_1: ' + sol_text_1.charAt(0).toUpperCase() + sol_text_1.substr(1) + 
+	//	' sol_select_1: ' + sol_select_1 + 
+	//	' sol_multiple_1: ' + sol_multiple_1 +
+	//	' sol_radio_1: ' + sol_radio_1 + 
+	//	' sol_checkbox_1: ' + sol_checkbox_1 + "<br/>" +
+	//	'resp_text_1: ' + resp_text_1 +
+	//	' resp_select_1: ' + resp_select_1 +
+	//	' resp_multiple_1: ' + resp_multiple_1 +
+	//	' resp_radio_1: ' + resp_radio_1 +
+	//	' resp_checkbox_1: ' + resp_checkbox_1 + "<br/>" + "<br/>" +        
+	//	'sol_text_2: ' + sol_text_2 + 
+	//	' sol_select_2: ' + sol_select_2 + 
+	//	' sol_multiple_2: ' +  sol_multiple_2 +
+	//	' sol_radio_2: ' + sol_radio_2 + 
+	//	' sol_checkbox_2: ' + sol_checkbox_2 + "<br/>" +
+	//	'resp_text_2: ' + resp_text_2 +
+	//	' resp_select_2: ' + resp_select_2 +
+	//	' resp_multiple_2: ' + resp_multiple_2 +
+	//	' resp_radio_2: ' + resp_radio_2 +
+	//	' resp_checkbox_2: ' + resp_checkbox_2 + "<br/>" + "<br/>"
+	//  ;    
+	alert('Puntuación obtenida: ' + score + ' / ' + numpreg);
 }
 //****************************************************************************************************
-//implementación de la presentación
-function darRespuesta(r){
- //var resultContainer=document.getElementById('resultContainer');
- //var p = document.createElement("p");
- //node = document.createTextNode(r);
- //p.appendChild(node);
- //resultContainer.appendChild(p);
- document.getElementsByClassName("solution").style.display='inline';    
+function informSuccess(su) {
+	var cor_v = "cor_" + su;
+	document.getElementById(cor_v).src = "img/success24.png";
+	document.getElementById(cor_v).style.display = 'inline';
+	var sol_v = "sol_" + su;
+	document.getElementById(sol_v).style.display = 'none';
+	score++;
 }
-function informSuccess(su){
- document.getElementsByTagName("solution")[su].style.display = 'inline';    
- document.getElementsByTagName("correction")[su].src = "img/success32.png";    
- document.getElementsByTagName("correction")[su].style.display ='inline';    
+
+function informError(er) {
+	var cor_v = "cor_" + er;
+	document.getElementById(cor_v).src = "img/error24.png";
+	document.getElementById(cor_v).style.display = 'inline-block';
+	var sol_v = "sol_" + er;
+	document.getElementById(sol_v).style.display = 'inline-block';
 }
-function informError(er){
- document.getElementsByTagName("solution")[er].style.display = 'inline';    
- document.getElementsByTagName("correction")[er].src = "img/error32.png";    
- document.getElementsByTagName("correction")[er].style.display = 'inline';    
-}
-function borrarCorreccion(){
-   	//var resultContainer=document.getElementById('resultContainer');
-   	//resultContainer.innerHTML = "";
-	document.getElementsByClassName("solution").style.display = 'none'; 
-	document.getElementsByClassName("correction").style.display = 'none'; 
+
+function resetPuntuacion() {
 	score = 0.0;
 }
