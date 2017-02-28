@@ -17,3 +17,6 @@ There is a second different XML file to demonstrate that the system works with a
 **JS**
 the examen form has a comprehensive JS script which takes care of the dynamics of th epage, includes a countdown timer and a final score. It also onforms if each question has been _correctly_ answered or _wrongly_, in which case it offers the correct solution.
 If the time runs out, auto-correction is triggered.
+
+Consulta la carpeta de **doc**umentacio per a un llistat detallat de totes les micro-tasques fetes durant aquest projecte.
+S'entrega versió indentada del codi i versió minified i validada de la branca master
