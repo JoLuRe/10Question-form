@@ -1,85 +1,98 @@
 body {
-    margin: 0;
-/*    margin-right: 50%;  */
-    padding: 0;
-    background-color:darkblue;
+	margin: 0;
+	padding: 0;
+	background-color: black;
 }
-header {
-    background-color:red;
-}
+
 .examen, header {
-    margin: 2% 3% 5% 3%;
-    font-family: calibri, sans-serif;
-    font-style: normal;
-    font-size:18px;
-    background-color:lightgoldenrodyellow;     
-}
-.panel {
-    margin: 1% 20% 1% 20%;
-    font-family: calibri, sans-serif;
-    font-style: normal;
-    font-size:18px;
-    background-color:lightgoldenrodyellow;
-    border: 2px solid grey;
-}
-.leyenda {
-    font-style: normal;
-    font-size: 38px;   
-    font-weight: bold;
-    text-align: right;
-    color: darkorange;
-}
-/*.submit{
-    margin: auto;
-}*/
-.question {
-    margin-bottom:1%;
-/*    margin-right: 40%;   */
-    margin: 1% 20% 1% 20%;
-    font-weight: bold;    
-    color:blue;  
-    border: 2px solid blue;
-	border-left: 5px solid blue;
-	border-right: 5px solid blue;
+	margin: 1% 2% 3% 2%;
+	font-family: calibri, sans-serif;
+	font-style: normal;
+	font-size: 18px;
+	background-color: #8debff;
 	border-radius: 10px;
 }
-.question:hover{
-    font-weight: bold;
-    color:darkorange;
-    background-color:blue;
+
+header {
+	font-family: calibri, sans-serif;
+	font-weight: bold;
+	font-size: 38px;
+	background-color: #638baf;
+	vertical-align: middle;
 }
-.impar {
-    background-color:orange;    
+
+header img, header div {
+	margin: 1% 2% 1% 2%;
+	display: inline-block;
+	vertical-align: middle;
 }
-.par {
-    background-color:orange;    
+
+.leyenda {
+	font-style: normal;
+	font-size: 28px;
+	font-weight: bold;
+	text-align: right;
+	color: #76838f;
 }
+
+.question {
+	margin-bottom: 1%;
+	margin: 1% 20% 1% 20%;
+	font-weight: bold;
+	color: yellow;
+}
+
+.question:hover {
+	font-weight: bold;
+	color: yellow;
+	background-color: brown;
+	border: 2px solid yellow;
+	border-left: 5px solid yellow;
+	border-right: 5px solid yellow;
+	border-radius: 10px;
+}
+
+.impar, .par {
+	color: white;
+	background-color: black;
+	border: 2px solid white;
+	border-left: 5px solid white;
+	border-right: 5px solid white;
+	border-radius: 10px;
+}
+
 .text, .mlist, .checkbox, .list, .radio {
-    margin: 1% 20% 1% 20%;
-}    
+	margin: 1% 20% 1% 20%;
+}
+
 .correction {
-    margin: 1% 0% 1% 20%;
+	margin: 1% 0% 1% 20%;
 }
+
 .solution, .correction {
-    display: none;  
-    vertical-align: middle;
+	display: none;
+	vertical-align: middle;
 }
+
 .solution, span {
-    color: blue;
-    font-size:16px; 
-    font-weight: bold;
-    margin: 1% 0% 1% 0%;
+	color: darkred;
+	font-size: 16px;
+	font-weight: bold;
+	margin: 1% 0% 1% 0%;
 }
-.text, .mlist, .checkbox{
-/*    background-color:cyan;    */ 
-}
-.list, .radio{
-/*    background-color:lightcyan;    */ 
-}
+
 label, input, option, select {
-    font-size:18px; 
+	font-size: 18px;
 }
+
 .submit {
-  	border-radius: 5px;
-    margin: 0% 50%;
+	border-radius: 5px;
+	margin: 0% 50%;
+}
+
+#reloj, #nota {
+	font-size: 42px;
+	margin: auto;
+	vertical-align: middle;
+	color: white;
 }
